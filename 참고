@@ -1,0 +1,15 @@
+import urllib.request
+import requests
+from bs4 import BeautifulSoup
+
+url = "http://www.longtermcare.or.kr/npbs/r/a/201/selectLtcoSrch.web"
+req = requests.get(url,data={'siDo':'11'})
+post_data = urllib.parse.urlencode({'siDo':'11'}).encode('UTF-8')
+
+html = urllib.request.urlopen(url,post_data).read()
+soup = BeautifulSoup(req.text,'html.parser')
+
+#table = soup.find('div', class='tbl tbl_col mt_15')
+LongTermCare_list = soup.select('tr')
+#print(soup)
+print(LongTermCare_list)
